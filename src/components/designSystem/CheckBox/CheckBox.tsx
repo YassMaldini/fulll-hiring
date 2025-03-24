@@ -11,6 +11,7 @@ export default ({
 }: CheckBoxProps) => {
   return (
     <TouchableOpacity
+      testID="checkbox"
       {...(onValueChange && {
         onPress: () => onValueChange(!value)
       })}

@@ -1,7 +1,5 @@
 import { ViewProps } from "react-native";
-import Icon from '@react-native-vector-icons/ionicons';
-import { IconProps } from "@react-native-vector-icons/common";
-import { FC, JSX } from "react";
+import { JSX } from "react";
 
 export interface CheckBoxProps extends ViewProps {
   value?: boolean;
