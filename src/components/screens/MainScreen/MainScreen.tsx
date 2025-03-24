@@ -17,7 +17,7 @@ export const IS_INFINITE_SCROLL_ENABLED = false
 export default () => {
 
   const inputRef = useRef<RNTextInput>(null)
-  
+
   const [searchText, setSearchText] = useState<string>()
 
   const [searchParams, setSearchParams] = useState<Pick<SearchUsersParams, 'page' | 'perPage'>>({
@@ -25,12 +25,12 @@ export default () => {
     perPage: DEFAULT_ITEMS_PER_PAGE
   })
   const [searchResult, setSearchResult] = useState<SearchUserResponse>()
-  
+
   const [isEditable, setEditable] = useState<boolean>(true)
 
   const fetchUserQuery = useCallback(async (text: string) => {
     const { data, headers, status } = await searchUsers({ text, ...searchParams })
-    
+
     if (status === 200) {
       setSearchResult(data)
     } else if (status === 403) {
@@ -75,6 +75,7 @@ export default () => {
         <View style={style.main}>
           <TextInput
             ref={inputRef}
+            testID="searchInput"
             style={{
               marginBottom: theme.spacing.l
             }}
@@ -84,12 +85,13 @@ export default () => {
             }}
           />
 
-          <View style={{ 
-            flexDirection: 'row', 
+          <View style={{
+            flexDirection: 'row',
             // justifyContent: 'center',
             marginBottom: theme.spacing.l
           }}>
-            <Button 
+            <Button
+              testID="toggleEditMode"
               color={!isEditable ? 'primary' : 'danger'}
               icon={<Icon name="create-outline" size={24} color="#fff" />}
               onPress={() => setEditable(value => !value)}

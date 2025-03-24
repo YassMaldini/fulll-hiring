@@ -49,7 +49,7 @@ export default () => {
         // uncheck the selected items
         checked: false
       }))
-      
+
       selectedItems?.map(item => {
         updatedSearchResultItems?.push({
           ...item,
@@ -64,7 +64,7 @@ export default () => {
         ...searchResult,
         items: updatedSearchResultItems
       }
-  
+
       setSearchResult(updatedSearchResult)
 
     }
@@ -84,7 +84,7 @@ export default () => {
         ...searchResult,
         items: filteredSearchResultItems
       }
-  
+
       setSearchResult(updatedSearchResult)
 
     }
@@ -99,17 +99,24 @@ export default () => {
           onValueChange={setSelectAllChecked}
           icon={<Icon name="remove" size={18} color="#fff" />}
           disabled={!isEditable}
+          testID="selectAllCheckbox"
         />
-        <Text style={{ fontSize: 18 }}>
+        <Text testID="selectedElementsCount" style={{ fontSize: 18 }}>
           <Text style={{ fontWeight: 'bold' }}>{selectedItemsCount || 0}</Text> elements selected
         </Text>
       </View>
       {Boolean(selectedItemsCount) &&
         <View style={[style.listHeaderSidedElement]}>
-          <TouchableOpacity onPress={handleDuplicate}>
+          <TouchableOpacity
+            testID="copyAction"
+            onPress={handleDuplicate}
+          >
             <Icon name="copy-outline" size={24} color={theme.colors.secondary} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleRemove}>
+          <TouchableOpacity
+            testID="removeAction"
+            onPress={handleRemove}
+          >
             <Icon name="trash-outline" size={24} color={theme.colors.secondary} />
           </TouchableOpacity>
         </View>

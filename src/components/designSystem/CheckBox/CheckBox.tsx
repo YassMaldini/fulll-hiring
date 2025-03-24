@@ -2,23 +2,24 @@ import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { CheckBoxProps } from "./CheckBox.types"
 import { theme } from "../../../utils/theme/theme"
 
-export default ({ 
-  value, 
-  onValueChange, 
-  icon, 
+export default ({
+  value,
+  onValueChange,
+  icon,
   disabled,
-  ...props 
+  ...props
 }: CheckBoxProps) => {
   return (
     <TouchableOpacity
-      testID="checkbox"
+      testID={props.testID}
       {...(onValueChange && {
         onPress: () => onValueChange(!value)
       })}
       {...{ disabled }}
+      accessibilityValue={{ text: `${value}` }}
     >
       <View style={[
-        style.box, 
+        style.box,
         props.style,
         disabled && {
           backgroundColor: theme.colors.secondaryLight

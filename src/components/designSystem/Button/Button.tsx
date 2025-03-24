@@ -2,21 +2,22 @@ import { Pressable, StyleSheet, Text, View } from "react-native"
 import { ButtonProps } from "./Button.types"
 import { theme } from "../../../utils/theme/theme"
 
-export default ({ 
-  children, 
-  color = 'primary', 
+export default ({
+  children,
+  color = 'primary',
   icon,
-  ...props 
+  ...props
 }: ButtonProps) => {
-  
+
   return (
-    <Pressable 
+    <Pressable
       style={[
         style.btn,
         {
           backgroundColor: props.disabled ? theme.colors.secondaryLight : theme.colors[color]
         }
       ]}
+      accessibilityLabel={children}
       {...props}
     >
       {Boolean(icon) && (

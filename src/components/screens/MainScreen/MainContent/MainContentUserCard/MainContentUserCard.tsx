@@ -16,7 +16,7 @@ export default ({ user }: MainContentCardProps) => {
     if (searchResult) {
       const updatedSearchResultItems = searchResult?.items.map((item) => {
         if (item.node_id === user.node_id) {
-          return { ...item, checked: !item.checked}
+          return { ...item, checked: !item.checked }
         } else {
           return item
         }
@@ -25,19 +25,20 @@ export default ({ user }: MainContentCardProps) => {
         ...searchResult,
         items: updatedSearchResultItems
       }
-  
+
       setSearchResult(updatedSearchResult)
     }
   }, [searchResult, user.checked])
 
   return (
-    <View style={style.box}>
-      <CheckBox 
+    <View testID="userCard" style={style.box}>
+      <CheckBox
         value={user.checked}
         onValueChange={onCheck}
         icon={<Icon name="checkmark" size={18} color="#fff" />}
         style={[style.checkbox, !isEditable && { display: 'none' }]}
         disabled={!isEditable}
+        testID="userCardCheckbox"
       />
       <View style={style.content}>
 

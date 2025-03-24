@@ -7,7 +7,11 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest --config=jest.config.js",
+    "e2e:ios:build": "detox build --configuration ios.sim.release",
+    "e2e:ios:test": "detox test --configuration ios.sim.release",
+    "e2e:android:build": "detox build --configuration android.emu.release",
+    "e2e:android:test": "detox test --configuration android.emu.release"
   },
   "dependencies": {
     "@react-native-vector-icons/common": "^11.0.0",
@@ -30,6 +34,7 @@
     "@types/jest": "^29.5.13",
     "@types/react": "^19.0.0",
     "@types/react-test-renderer": "^19.0.0",
+    "detox": "^20.35.1",
     "eslint": "^8.19.0",
     "jest": "^29.7.0",
     "prettier": "2.8.8",
