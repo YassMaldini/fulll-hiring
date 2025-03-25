@@ -1,97 +1,190 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<h3><a href="#github-user-search">[Mobile] Github user search</a></h3>
+<h3><a href="#quiz">[Mobile] Quiz</a></h3>
+<h3><a href="#fizzbuzz">[Algo] Fizzbuzz</a></h3>
 
-# Getting Started
+# Github user search
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Follow these steps to set up the project locally.
 
-## Step 1: Start Metro
+### Installation
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/YassMaldini/fulll-hiring.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run a development build locally
+   ```sh
+   npm run android|ios
+   ```
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Test
 
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+#### Unit tests (Jest)
 
 ```sh
-bundle install
+npm run test
 ```
 
-Then, and every time you update your native dependencies, run:
+#### E2E tests (Detox)
+
+Follow the steps from the following url to make your environment ready to run Detox: https://wix.github.io/Detox/docs/introduction/environment-setup#detox-prerequisites
 
 ```sh
-bundle exec pod install
+npm run e2e:android|ios:build|test
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+For example the command to create a build for an ios simulator would be:
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm run e2e:ios:build
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+And the command to run the e2e tests once the build is created:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```sh
+npm run e2e:ios:test
+```
 
-## Step 3: Modify your app
+# Quiz
 
-Now that you have successfully run the app, let's make changes!
+1. What would return the following code?
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```jsx
+class Content extends React.Component {
+  render() {
+    return (
+      <>
+        <Text>Hello</Text>
+        <Text>World</Text>
+      </>
+    );
+  }
+}
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+class Container extends React.Component {
+  render() {
+    return (
+      <ScrollView>
+        <View>
+          <Content />
+        </View>
+      </ScrollView>
+    );
+  }
+}
+```
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- B
+	```jsx
+	<ScrollView>
+	  <View>
+	    <Text>Hello</Text>
+	    <Text>World</Text>
+	  </View>
+	</ScrollView>
+	```
 
-## Congratulations! :tada:
+2. Which reducer code do not follow best practices?
 
-You've successfully run and modified your React Native App. :partying_face:
+- A
+	```ts
+	case ADD_USERID:
+	    state.users.push[4];
+	    return state;
+	```
 
-### Now what?
+3. Which reducer code is correct?
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- C) 
+	```ts
+	case USER_SET_DATA:
+	  const { data } = action
+	  const authType = await getAuthType(data.token)
+	
+	  return { ...state, data, authType, loading: false }
+	```
 
-# Troubleshooting
+4. A higher-order component is a function that:
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+	- A) takes a component and returns a new component
 
-# Learn More
+5. What is "windowing"?
 
-To learn more about React Native, take a look at the following resources:
+	- B) a technique to render a small subset of a larger dataset
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+6. Which methods are not usable with React hooks?
+
+	- B) componentWillUnmount
+	- C) componentDidUpdate
+
+7. Which status code is not an error?
+
+	- D) 200
+
+8. Use Typescript to describe the following function which returns a success message when the request has been successfully sent, returns a code status when the request has failed.
+
+	```ts
+   async function registerUser(name: string, age: number): Promise<string | number> {
+    
+      const response = await fetch(`http://some-api.com/register`, {
+        method: "POST",
+        body: JSON.stringify({ name, age })
+      });
+    
+      try {
+        if (response.ok) {
+          return "Request successfully sent";
+        } else {
+          return response.status;
+        }
+      } catch (error) {
+        return 500;
+      }
+  
+    }
+
+	/* Usage */ 
+	const messageOrCodeStatus = await registerUser("Laurent", 35);
+	```
+
+9. What is the main difference between queries and mutations in GraphQL? Queries are used to get data and fields are executed in parallel; mutations are used to create, edit or delete data and executed serially for the top-level fields.
+
+10. What does not permit to interact with servers within React Native project?
+
+- C) SwiftUI
+
+# Fizzbuzz
+
+```js
+const N = 30
+
+function fizzbuzz(len) {
+  return [...Array(len)].map((_, num) => {
+    num += 1;
+
+    if (isDivisible(num, 3) && isDivisible(num, 5)) {
+      console.log("FizzBuzz");
+      return "FizzBuzz";
+    } else if (isDivisible(num, 3)) {
+      console.log("Fizz");
+      return "Fizz";
+    } else if (isDivisible(num, 5)) {
+      console.log("Buzz");
+      return "Buzz";
+    } else {
+      console.log(num);
+      return num;
+    }
+  });
+}
+
+function isDivisible(num, divisor) {
+  return num % divisor === 0
+}
+
+fizzbuzz(N)
+```
